@@ -11,9 +11,15 @@ const fetchMyIP = function(callback) {
   // use request to fetch IP address from JSON API
   needle.get("https://api.ipify.org/?format=json", (error, response) => {
     if (error) {
-      response = null;
-      callback(error, response);
-    } else {      
+      callback(error, null);
+      return;
+    }
+    //if non-200 status, assume server error
+    if (response.statusCode !== 200) {
+      const msg = `Status Code ${response.statusCode} when fetching IP. Response: ${response.body}`;
+      callback(Error(msg), null);
+      return;
+    } else {
       callback(error, response.body.ip);
     }
   });
