@@ -9,12 +9,12 @@ const needle = require("needle");
  */
 const fetchMyIP = function(callback) {
   // use request to fetch IP address from JSON API
-  needle.get("https://api.ipify.org/?format=json",(error, ip) => {
+  needle.get("https://api.ipify.org/?format=json", (error, response) => {
     if (error) {
-      ip = null;
-      callback(error, ip);
-    } else {
-      callback(error,ip);
+      response = null;
+      callback(error, response);
+    } else {      
+      callback(error, response.body.ip);
     }
   });
 };
