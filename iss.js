@@ -39,8 +39,8 @@ const fetchCoordsByIP = function(ip, callback) {
       return;
     } else {
       const coordinates = {
-        latitude: body.latitude.toString(),
-        longitude: body.longitude.toString(),
+        latitude: body.latitude,
+        longitude: body.longitude,
       };
 
       callback(null, coordinates);
