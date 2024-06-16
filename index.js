@@ -11,7 +11,7 @@ const { nextISSTimesForMyLocation } = require("./iss");
  *   Next pass at Mon Jun 10 2019 20:11:44 GMT-0700 (Pacific Daylight Time) for 468 seconds!
  */
 
-const printPassTimes = function (passTimes) {
+const printPassTimes = function(passTimes) {
   for (const pass of passTimes) {
     const dateTime = new Date(0);
     dateTime.setUTCSeconds(pass.risetime);

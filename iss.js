@@ -7,7 +7,7 @@ const needle = require("needle");
  *   - An error, if any (nullable)
  *   - The IP address as a string (null if error). Example: "162.245.144.188"
  */
-const fetchMyIP = function (callback) {
+const fetchMyIP = function(callback) {
   // use request to fetch IP address from JSON API
   needle.get("https://api.ipify.org/?format=json", (error, response, body) => {
     if (error) {
@@ -36,7 +36,7 @@ const fetchMyIP = function (callback) {
  *   - The lat and lng as an object (null if error). Example:
  *     { latitude: '49.27670', longitude: '-123.13000' }
  */
-const fetchCoordsByIP = function (ip, callback) {
+const fetchCoordsByIP = function(ip, callback) {
   needle.get(`https://ipwho.is/${ip}`, (error, response) => {
     if (error) {
       callback(error, null);
@@ -68,7 +68,7 @@ const fetchCoordsByIP = function (ip, callback) {
  *   - The fly over times as an array of objects (null if error). Example:
  *     [ { risetime: 134564234, duration: 600 }, ... ]
  */
-const fetchISSFlyOverTimes = function (coords, callback) {
+const fetchISSFlyOverTimes = function(coords, callback) {
   needle.get(
     `https://iss-flyover.herokuapp.com/json/?lat=${coords.latitude}&lon=${coords.longitude}`,
     (error, response, body) => {
@@ -97,7 +97,7 @@ const fetchISSFlyOverTimes = function (coords, callback) {
  *   - The fly-over times as an array (null if error):
  *     [ { risetime: <number>, duration: <number> }, ... ]
  */
-const nextISSTimesForMyLocation = function (callback) {
+const nextISSTimesForMyLocation = function(callback) {
   fetchMyIP((error, ip) => {
     if (error) {
       return callback(error, null);
