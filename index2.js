@@ -1,3 +1,14 @@
-const { fetchMyIP } = require("./iss_promised");
+const { nextISSTimesForMyLocation } = require("./iss_promised");
 
-fetchMyIP().then((ip) => console.log(ip));
+const printPassTimes = function (passTimes) {
+  for (const pass of passTimes) {
+    const dateTime = new Date(0);
+    dateTime.setUTCSeconds(pass.risetime);
+    const duration = pass.duration;
+    console.log(`Next pass at ${dateTime} for ${duration} seconds`);
+  }
+};
+
+nextISSTimesForMyLocation().then((passtimes) => {
+  printPassTimes(passtimes);
+});
