@@ -9,6 +9,10 @@ const printPassTimes = function (passTimes) {
   }
 };
 
-nextISSTimesForMyLocation().then((passtimes) => {
-  printPassTimes(passtimes);
-});
+nextISSTimesForMyLocation()
+  .then((passtimes) => {
+    printPassTimes(passtimes);
+  })
+  .catch((error) => {
+    console.log("It didn't work: ", error.message);
+  });
